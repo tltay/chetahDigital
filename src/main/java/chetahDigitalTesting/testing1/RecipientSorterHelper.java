@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * A helper class to sort recipient list into matching tags.
- * @author litin
+ * @author liting
  *
  */
 public class RecipientSorterHelper {

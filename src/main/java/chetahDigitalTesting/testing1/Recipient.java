@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * A recipient object.
- * @author litin
+ * @author liting
  *
  */
 public class Recipient {

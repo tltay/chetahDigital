@@ -1,5 +1,6 @@
 package chetahDigitalTesting.testing1;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,10 +10,11 @@ import java.util.List;
 public class App 
 {
     public static void main( String[] args )
-    {       
+    {
         List<Recipient> recipientsList = ReadJson.readJsonFile();        
    
-        RecipientSorterHelper.printRecipientList(recipientsList);
+        // A method to print all recipient obtained from the data.json
+        // RecipientSorterHelper.printRecipientList(recipientsList);
      
         HashMap<List<String>, List<String>> sortedRecipientMap = RecipientSorterHelper.getAllTagUniques(recipientsList);
         

@@ -1,5 +1,6 @@
 package chetahDigitalTesting.testing1;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,13 +14,13 @@ import org.json.simple.parser.ParseException;
 
 /**
  * ReadJson object to read json file and convert it to Recipient object and store into a list.
- * @author litin
+ * @author liting
  *
  */
 public class ReadJson {
 	//JSON parser object to parse read file
 	
-	public static String fileLocation = "C:\\Users\\litin\\chetahDigital\\chetahDigital\\src\\main\\java\\data.json";
+	public static String DATA_FILE_LOCATION = "\\src\\main\\resource\\data.json";
 	public static String recipientFieldName = "recipients";
 	public static String tagsFieldName = "tags";
 	public static String recipientNameFieldName = "name";
@@ -27,10 +28,12 @@ public class ReadJson {
 	
 	@SuppressWarnings("unchecked")
 	public static List<Recipient> readJsonFile() {
+	   
 	    JSONParser jsonParser = new JSONParser();
+   	 	
 	    List<Recipient> recipients = new ArrayList<Recipient>();
 	     
-	    try (FileReader reader = new FileReader(fileLocation))
+	    try (FileReader reader = new FileReader(getFilePath()))
 	    {
 	        //Read JSON file
 	        Object parseObject = jsonParser.parse(reader);
@@ -39,8 +42,7 @@ public class ReadJson {
 
 	        //Get recipients
 			JSONArray recipientArrays = (JSONArray) recipientListObject.get(recipientFieldName);
-			//System.out.println("this is recipient object : " +  recipientArrays);
-			
+						
 			recipientArrays.forEach( recipientObject -> recipients.add(parseRecipientObject( (JSONObject) recipientObject ) ));
 	    } catch (FileNotFoundException e) {
 	    	System.out.println(e);
@@ -71,4 +73,9 @@ public class ReadJson {
 
         return new Recipient(recipientTags, recipientName, recipientId );
     }
+	
+	private static String getFilePath() {
+		String filePath = new File("").getAbsolutePath();
+   	 	return filePath + DATA_FILE_LOCATION;
+	}
 }
